@@ -13,9 +13,13 @@ namespace SnakesAndLadders
         private const int MAX_CELLS = 100;
         private DiceValidator _diceValidator;
         private PositionValidator _positionValidator;
+        private SnakeLadderPositions _snakeLadderPositions;
 
-        public SnakesAndLaddersBoard()
+        public SnakesAndLaddersBoard(SnakeLadderPositions snakeLadderPositions)
         {
+            ValidateSnakeLadderPositions(snakeLadderPositions);
+
+            _snakeLadderPositions = snakeLadderPositions;
             _diceValidator = new DiceValidator();
             _positionValidator = new PositionValidator();
         }
@@ -23,9 +27,13 @@ namespace SnakesAndLadders
         public int Play(int currentPosition, int diceOutcome)
         {
             ValidateInputs(currentPosition, diceOutcome);
+            
             int nextPosition = currentPosition + diceOutcome;
+            
             if (nextPosition > MAX_CELLS)
                 nextPosition = currentPosition;
+            else if (_snakeLadderPositions.SnakePositions.ContainsKey(nextPosition))
+                nextPosition = _snakeLadderPositions.SnakePositions[nextPosition];
 
             return nextPosition;
         }
@@ -34,11 +42,19 @@ namespace SnakesAndLadders
         {
             ValidationResult results = _diceValidator.Validate(diceOutcome);
             if (results.IsValid == false)
-                throw new InvalidInputException(string.Join("||", results.Errors.Select(e => e.ErrorMessage)));
+                throw new InvalidInputException(results.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
 
             results = _positionValidator.Validate(currentPosition);
             if (results.IsValid == false)
-                throw new InvalidInputException(string.Join("||", results.Errors.Select(e => e.ErrorMessage)));
+                throw new InvalidInputException(results.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
+        }
+
+        private void ValidateSnakeLadderPositions(SnakeLadderPositions snakeLadderPositions)
+        {
+            var snakeAndLadderPositionValidator = new SnakeAndLadderPositionValidator();
+            ValidationResult results = snakeAndLadderPositionValidator.Validate(snakeLadderPositions);
+            if (results.IsValid == false)
+                throw new InvalidInputException(results.Errors.Select(e => e.ErrorMessage).FirstOrDefault());
         }
     }
 }

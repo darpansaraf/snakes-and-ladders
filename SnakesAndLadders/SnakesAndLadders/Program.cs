@@ -1,5 +1,6 @@
 ﻿using SnakesAndLadders.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SnakesAndLadders
@@ -9,13 +10,18 @@ namespace SnakesAndLadders
     {
         static void Main(string[] args)
         {
-            
-            SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard();
+
+            var snakeLadderPositions = new SnakeLadderPositions()
+            {
+                SnakePositions = new Dictionary<int, int>() { { 36, 19 } },
+            };
+
+            SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions);
             while (true)
             {
                 int currentPosition = -1;
                 int diceOutcome = -1;
-                Console.WriteLine("\n\n=================================");
+                Console.WriteLine("=================================\n");
                 try
                 {
                     Console.WriteLine("Enter Current Position:");
