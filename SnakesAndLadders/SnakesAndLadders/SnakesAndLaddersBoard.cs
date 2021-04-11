@@ -53,7 +53,7 @@ namespace SnakesAndLadders
 
         private void ValidateSnakeLadderPositions(SnakeLadderPositions snakeLadderPositions)
         {
-            var snakeAndLadderPositionValidator = new SnakeAndLadderPositionValidator();
+            var snakeAndLadderPositionValidator = new SnakeLadderPositionValidator();
             ValidationResult results = snakeAndLadderPositionValidator.Validate(snakeLadderPositions);
             if (results.IsValid == false)
                 throw new InvalidInputException(results.Errors.Select(e => e.ErrorMessage).FirstOrDefault());

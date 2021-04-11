@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SnakesAndLadders.Validators
 {
-    class SnakeAndLadderPositionValidator : AbstractValidator<SnakeLadderPositions>
+    class SnakeLadderPositionValidator : AbstractValidator<SnakeLadderPositions>
     {
-        public SnakeAndLadderPositionValidator()
+        public SnakeLadderPositionValidator()
         {
             /*
              * snakes' start position should always be less than its end position.
@@ -18,17 +18,22 @@ namespace SnakesAndLadders.Validators
              */
             RuleFor(snakePositions => snakePositions.SnakePositions)
                .Must(ValidateSnakePositions)
-               .WithMessage("Invalid Snakes' Start or End position");
+               .WithMessage("Snakes' Start Position cannot be greater than End position");
+
+            RuleForEach(snakePositions => snakePositions.SnakePositions.Keys)
+                .InclusiveBetween(2,100)
+                .WithMessage("Invalid Snakes' Start Position");
+
+            RuleForEach(snakePositions => snakePositions.SnakePositions.Values)
+                .GreaterThan(1)
+                .WithMessage("Invalid Snakes' End Position");
+
         }
 
         private bool ValidateSnakePositions(Dictionary<int, int> snakePositions)
         {
-            if (snakePositions.Any(x => x.Key < 2) || snakePositions.Any(x => x.Key >= 100))
+            if (snakePositions.Any(x => x.Key < x.Value))
                 return false;
-
-            if (snakePositions.Any(x => x.Key < x.Value) || snakePositions.Any(x => x.Value < 1))
-                return false;
-
             return true;
         }
     }
