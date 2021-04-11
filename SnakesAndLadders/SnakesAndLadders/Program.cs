@@ -16,29 +16,25 @@ namespace SnakesAndLadders
             Console.WriteLine("Enter 1 for General Dice, 2 for Crooked Even Dice");
             int diceStrategyOption = int.TryParse(Console.ReadLine(), out diceStrategyOption) ? diceStrategyOption : -1;
 
-            AbstractValidator<int> diceValidator;
-            if (diceStrategyOption == 1)
-                diceValidator = new DiceValidator();
-            else
-                diceValidator = new EvenDiceValidator();
+            AbstractValidator<int> diceValidator = GetDiceValidator(diceStrategyOption);
 
             // Initialize Snake Positions here
             var snakeLadderPositions = new SnakeLadderPositions()
             {
                 SnakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } },
             };
+
             SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
             Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
             while (true)
             {
-                int currentPosition = -1;
-                int diceOutcome = -1;
                 Console.WriteLine("=================================\n");
                 try
                 {
                     Console.WriteLine("Enter Current Position:");
-                    currentPosition = int.TryParse(Console.ReadLine(), out currentPosition) ? currentPosition : -1;
+                    int currentPosition = int.TryParse(Console.ReadLine(), out currentPosition) ? currentPosition : -1;
 
+                    int diceOutcome;
                     Console.WriteLine("Enter Dice Outcome:");
                     diceOutcome = int.TryParse(Console.ReadLine(), out diceOutcome) ? diceOutcome : -1;
 
@@ -54,6 +50,14 @@ namespace SnakesAndLadders
                     //log error
                 }
             }
+        }
+
+        private static AbstractValidator<int> GetDiceValidator(int diceStrategyOption)
+        {
+            if (diceStrategyOption == 1)
+                return new DiceValidator();
+            else
+                return new EvenDiceValidator();
         }
     }
 }
