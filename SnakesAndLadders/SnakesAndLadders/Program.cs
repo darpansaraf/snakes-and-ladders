@@ -21,14 +21,14 @@ namespace SnakesAndLadders
                 diceValidator = new DiceValidator();
             else
                 diceValidator = new EvenDiceValidator();
-            // Initialize Snake Positions & Dice Strategy here
 
+            // Initialize Snake Positions here
             var snakeLadderPositions = new SnakeLadderPositions()
             {
-                SnakePositions = new Dictionary<int, int>() { { 36, 19 } },
+                SnakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } },
             };
             SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
-            
+            Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
             while (true)
             {
                 int currentPosition = -1;
