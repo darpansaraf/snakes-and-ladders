@@ -52,6 +52,18 @@ namespace SnakesAndLadders.Tests
         }
 
         [Fact]
+        public void Test_NextPositionGreaterThanMaxCellsReturnsCurrentPosition()
+        {
+            int currentPosition = 97;
+            int diceOutcome = 5;
+            int expectedNextPosition = 97;
+
+            int actualNextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
+
+            Assert.Equal(expectedNextPosition, actualNextPosition);
+        }
+
+        [Fact]
         public void Test_InvalidSnakesPositionsShouldThrowErrorAtInitialize()
         {
             var snakeLadderPositions = new SnakeLadderPositions()
