@@ -3,7 +3,7 @@ a simulation of snakes and ladders game
 
 ## Requirements
 
-* Visual Studio 2019, .Net Core 3.1
+* .Net Core 3.1
 
 ## Getting Started
 To build the application and get started follow the below steps
