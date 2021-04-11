@@ -14,13 +14,19 @@ To build the application and get started follow the below steps
     git clone https://github.com/darpansaraf/snakes-and-ladders.git
     
  Step 2:
-    Open this solution in your Visual Studio IDE
+    Navigate to the SnakesAndLadder Folder
     
  Step 3: 
-    Press F5 to run the program
+    Execute the following command on powershell:
+    
+    dotnet run
     
 ## Test Cases
-    This application has unit tests which are run using xUnit Test Adapter 
+    This application has unit tests which are run using xUnit Test Adapter. 
+    To Run test cases navigate to the 'SnakesAndLadders.Tests' folder and execute the following command on powershell: 
+    
+    dotnet test
+    
     
 ## Implementation Approach
     This application calculates the next position of a player on a snakes and ladder board relative the to the current position and dice outcome.
