@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SnakesAndLadders.Validators;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SnakesAndLadders.Tests
                 SnakePositions = new Dictionary<int, int>() { { 14, 7 } }
             };
 
-            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions);
+            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator());
         }
 
         public void Dispose()

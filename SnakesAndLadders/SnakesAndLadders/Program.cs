@@ -1,4 +1,6 @@
-﻿using SnakesAndLadders.Exceptions;
+﻿using FluentValidation;
+using SnakesAndLadders.Exceptions;
+using SnakesAndLadders.Validators;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -10,13 +12,23 @@ namespace SnakesAndLadders
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Pick A Dice Strategy:");
+            Console.WriteLine("Enter 1 for General Dice, 2 for Crooked Even Dice");
+            int diceStrategyOption = int.TryParse(Console.ReadLine(), out diceStrategyOption) ? diceStrategyOption : -1;
+
+            AbstractValidator<int> diceValidator;
+            if (diceStrategyOption == 1)
+                diceValidator = new DiceValidator();
+            else
+                diceValidator = new EvenDiceValidator();
+            // Initialize Snake Positions & Dice Strategy here
 
             var snakeLadderPositions = new SnakeLadderPositions()
             {
                 SnakePositions = new Dictionary<int, int>() { { 36, 19 } },
             };
-
-            SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions);
+            SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
+            
             while (true)
             {
                 int currentPosition = -1;

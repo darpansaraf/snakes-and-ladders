@@ -13,7 +13,8 @@ namespace SnakesAndLadders.Validators
         {
             /*
              * snakes' start position should always be less than its end position.
-             * Also, a snake start position cannot be at 1 and it cannot be greater than or equal to 100
+             * snakes' start position cannot be at 1 and it cannot be greater than or equal to 100
+             * snakes' end position cannot be less than 1
              */
             RuleFor(snakePositions => snakePositions.SnakePositions)
                .Must(ValidateSnakePositions)
@@ -25,10 +26,7 @@ namespace SnakesAndLadders.Validators
             if (snakePositions.Any(x => x.Key < 2) || snakePositions.Any(x => x.Key >= 100))
                 return false;
 
-            if (snakePositions.Any(x => x.Key < x.Value))
-                return false;
-
-            if (snakePositions.Any(x => x.Value < 1))
+            if (snakePositions.Any(x => x.Key < x.Value) || snakePositions.Any(x => x.Value < 1))
                 return false;
 
             return true;

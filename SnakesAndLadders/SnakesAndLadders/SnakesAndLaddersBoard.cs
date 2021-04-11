@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using SnakesAndLadders.Exceptions;
 using SnakesAndLadders.Validators;
 using System;
@@ -11,16 +12,17 @@ namespace SnakesAndLadders
     public class SnakesAndLaddersBoard
     {
         private const int MAX_CELLS = 100;
-        private DiceValidator _diceValidator;
-        private PositionValidator _positionValidator;
+        
         private SnakeLadderPositions _snakeLadderPositions;
+        private AbstractValidator<int> _diceValidator;
+        private PositionValidator _positionValidator;
 
-        public SnakesAndLaddersBoard(SnakeLadderPositions snakeLadderPositions)
+        public SnakesAndLaddersBoard(SnakeLadderPositions snakeLadderPositions, AbstractValidator<int> diceValidator)
         {
             ValidateSnakeLadderPositions(snakeLadderPositions);
 
             _snakeLadderPositions = snakeLadderPositions;
-            _diceValidator = new DiceValidator();
+            _diceValidator = diceValidator;
             _positionValidator = new PositionValidator();
         }
 

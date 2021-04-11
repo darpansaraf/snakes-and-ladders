@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SnakesAndLadders.Validators
 {
-    class DiceValidator : AbstractValidator<int>
+    public class DiceValidator : AbstractValidator<int>
     {
         public DiceValidator()
         {

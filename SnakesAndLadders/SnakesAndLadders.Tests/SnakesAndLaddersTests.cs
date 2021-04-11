@@ -1,4 +1,5 @@
 using SnakesAndLadders.Exceptions;
+using SnakesAndLadders.Validators;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -58,7 +59,7 @@ namespace SnakesAndLadders.Tests
                 //Contains invalid positions - { 36, 45 } - start position < end position
                 SnakePositions = new Dictionary<int, int>() { { 36, 45 }, { 65, 35 }, { 87, 32 }, { 97, 21 } } 
             };
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions));
+            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
         }
 
         [Fact]
@@ -67,9 +68,38 @@ namespace SnakesAndLadders.Tests
             var snakeLadderPositions = new SnakeLadderPositions()
             {
                 //Contains invalid positions - { 87, -32 }
-                SnakePositions = new Dictionary<int, int>() { { 1, 35 }, { 87, -32 }, { 97, 21 } }
+                SnakePositions = new Dictionary<int, int>() { { 87, -32 }, { 97, 21 } }
             };
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions));
+            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
+        }
+
+        [Fact]
+        public void Test_CrookedEvenDiceStrategyWithValidDiceOutcomeShouldMoveToNextPosition()
+        {
+            int currentPosition = 10, diceOutcome = 2, expectedNextPosition = 12;
+            var snakeLadderPositions = new SnakeLadderPositions()
+            {
+                SnakePositions = new Dictionary<int, int>() { { 14, 7 }}
+            };
+            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new EvenDiceValidator());
+
+            int actualNextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
+
+            Assert.Equal(expectedNextPosition, actualNextPosition);
+        }
+
+        [Fact]
+        public void Test_CrookedEvenDiceStrategyWithInvalidDiceOutcomeShouldThrowErrorAtPlay()
+        {
+            int currentPosition = 10, diceOutcome = 3;
+            var snakeLadderPositions = new SnakeLadderPositions()
+            {
+                SnakePositions = new Dictionary<int, int>() { { 14, 7 } }
+            };
+
+            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new EvenDiceValidator());
+
+            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
         }
 
     }
