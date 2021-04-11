@@ -14,7 +14,7 @@ To build the application and get started follow the below steps
     git clone https://github.com/darpansaraf/snakes-and-ladders.git
     
  Step 2:
-    Navigate to the SnakesAndLadder Folder
+    Navigate to the 'SnakesAndLadder' Folder
     
  Step 3: 
     Execute the following command on powershell:
