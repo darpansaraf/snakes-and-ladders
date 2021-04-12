@@ -47,7 +47,7 @@ namespace SnakesAndLadders
                 }
                 catch (Exception ex)
                 {
-                    //log error
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
@@ -59,5 +59,6 @@ namespace SnakesAndLadders
             else
                 return new EvenDiceValidator();
         }
+
     }
 }
