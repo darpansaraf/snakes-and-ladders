@@ -66,22 +66,18 @@ namespace SnakesAndLadders.Tests
         [Fact]
         public void Test_InvalidSnakesPositionsShouldThrowErrorAtInitialize()
         {
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                //Contains invalid positions - { 36, 45 } - start position < end position
-                SnakePositions = new Dictionary<int, int>() { { 36, 45 }, { 65, 35 }, { 87, 32 }, { 97, 21 } } 
-            };
+            //Contains invalid positions - { 36, 45 } - start position < end position
+            var snakePositions = new Dictionary<int, int>() { { 36, 45 }, { 65, 35 }, { 87, 32 }, { 97, 21 } };
+            var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
             Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
         }
 
         [Fact]
         public void Test_InvalidSnakesStartOrEndPositionsShouldThrowErrorAtInitialize()
         {
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                //Contains invalid positions - { 87, -32 }
-                SnakePositions = new Dictionary<int, int>() { { 87, -32 }, { 97, 21 } }
-            };
+            //Contains invalid positions - { 87, -32 }
+            var snakePositions = new Dictionary<int, int>() { { 87, -32 }, { 97, 21 } };
+            var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
             Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
         }
 
@@ -89,10 +85,8 @@ namespace SnakesAndLadders.Tests
         public void Test_CrookedEvenDiceStrategyWithValidDiceOutcomeShouldMoveToNextPosition()
         {
             int currentPosition = 10, diceOutcome = 2, expectedNextPosition = 12;
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                SnakePositions = new Dictionary<int, int>() { { 14, 7 }}
-            };
+            var snakePositions = new Dictionary<int, int>() { { 14, 7 } };
+            var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
             snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new EvenDiceValidator());
 
             int actualNextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
@@ -104,10 +98,8 @@ namespace SnakesAndLadders.Tests
         public void Test_CrookedEvenDiceStrategyWithInvalidDiceOutcomeShouldThrowErrorAtPlay()
         {
             int currentPosition = 10, diceOutcome = 3;
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                SnakePositions = new Dictionary<int, int>() { { 14, 7 } }
-            };
+            var snakePositions = new Dictionary<int, int>() { { 14, 7 } };
+            var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
 
             snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new EvenDiceValidator());
 

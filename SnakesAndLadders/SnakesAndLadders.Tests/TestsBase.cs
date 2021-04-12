@@ -10,13 +10,11 @@ namespace SnakesAndLadders.Tests
     public class TestsBase : IDisposable
     {
         protected SnakesAndLaddersBoard snakesAndLaddersBoard;
+        private static Dictionary<int, int> _snakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } };
+
         public TestsBase()
         {
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                SnakePositions = new Dictionary<int, int>() { { 14, 7 } }
-            };
-
+            var snakeLadderPositions = new SnakeLadderPositions(_snakePositions);
             snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator());
         }
 

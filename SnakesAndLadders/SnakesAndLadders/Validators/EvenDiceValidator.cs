@@ -6,7 +6,7 @@ using System.Text;
 namespace SnakesAndLadders.Validators
 {
     /// <summary>
-    /// Validates whether the dice outcome is a even outcome. Ex - 2, 4, 6
+    /// Validates whether the dice outcome is a even outcome. Ex - 2, 4, 6.
     /// </summary>
     public class EvenDiceValidator : AbstractValidator<int>
     {

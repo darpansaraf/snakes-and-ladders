@@ -8,7 +8,7 @@ using System.Text;
 namespace SnakesAndLadders.Validators
 {
     /// <summary>
-    /// Validates whether Snakes have been configured correctly
+    /// Validates whether Snakes have been configured correctly.
     /// </summary>
     class SnakeLadderPositionValidator : AbstractValidator<SnakeLadderPositions>
     {

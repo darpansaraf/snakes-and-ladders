@@ -8,26 +8,28 @@ using System.Diagnostics.CodeAnalysis;
 namespace SnakesAndLadders
 {
     /// <summary>
-    /// Main Class
+    /// Main Class.
     /// </summary>
     [ExcludeFromCodeCoverage]
     class Program
     {
+        // Initialize Snake Positions here
+        private static Dictionary<int, int> _snakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } };
+
         static void Main(string[] args)
         {
             Console.WriteLine("Pick A Dice Strategy:");
             Console.WriteLine("Enter 1 for General Dice, 2 for Crooked Even Dice");
             int diceStrategyOption = int.TryParse(Console.ReadLine(), out diceStrategyOption) ? diceStrategyOption : -1;
+            AbstractValidator<int> diceValidator;
+            if (diceStrategyOption == 1)
+                diceValidator = new DiceValidator();
+            else
+                diceValidator = new EvenDiceValidator();
 
-            AbstractValidator<int> diceValidator = GetDiceValidator(diceStrategyOption);
-
-            // Initialize Snake Positions here
-            var snakeLadderPositions = new SnakeLadderPositions()
-            {
-                SnakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } }
-            };
-
+            SnakeLadderPositions snakeLadderPositions = new SnakeLadderPositions(_snakePositions);
             SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
+
             Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
             while (true)
             {
@@ -42,7 +44,7 @@ namespace SnakesAndLadders
                     diceOutcome = int.TryParse(Console.ReadLine(), out diceOutcome) ? diceOutcome : -1;
 
                     int nextPosition = _snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
-                    Console.WriteLine("Next Position:" + nextPosition);
+                    Console.WriteLine($"Next Position:{nextPosition}");
                 }
                 catch (InvalidInputException ex)
                 {
@@ -54,14 +56,5 @@ namespace SnakesAndLadders
                 }
             }
         }
-
-        private static AbstractValidator<int> GetDiceValidator(int diceStrategyOption)
-        {
-            if (diceStrategyOption == 1)
-                return new DiceValidator();
-            else
-                return new EvenDiceValidator();
-        }
-
     }
 }

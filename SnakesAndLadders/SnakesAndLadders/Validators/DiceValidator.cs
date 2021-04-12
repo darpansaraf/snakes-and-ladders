@@ -6,7 +6,7 @@ using System.Text;
 namespace SnakesAndLadders.Validators
 {
     /// <summary>
-    /// Validates whether dice outcome is between 1 and 6 inclusive
+    /// Validates whether dice outcome is between 1 and 6 inclusive.
     /// </summary>
     public class DiceValidator : AbstractValidator<int>
     {
