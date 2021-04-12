@@ -28,7 +28,9 @@ namespace SnakesAndLadders.Tests
         {
             int currentPosition = 7;
             int diceOutcome = 8;
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
+            
+            Assert.Throws<InvalidInputException>(() => 
+                snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
         }
 
         [Fact]
@@ -36,7 +38,9 @@ namespace SnakesAndLadders.Tests
         {
             int currentPosition = -7;
             int diceOutcome = 3;
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
+           
+            Assert.Throws<InvalidInputException>(() => 
+                snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
         }
 
         [Fact]
@@ -68,8 +72,11 @@ namespace SnakesAndLadders.Tests
         {
             //Contains invalid positions - { 36, 45 } - start position < end position
             var snakePositions = new Dictionary<int, int>() { { 36, 45 }, { 65, 35 }, { 87, 32 }, { 97, 21 } };
+            
             var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
+            
+            Assert.Throws<InvalidInputException>(() => 
+                snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
         }
 
         [Fact]
@@ -77,8 +84,11 @@ namespace SnakesAndLadders.Tests
         {
             //Contains invalid positions - { 87, -32 }
             var snakePositions = new Dictionary<int, int>() { { 87, -32 }, { 97, 21 } };
+            
             var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
-            Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
+            
+            Assert.Throws<InvalidInputException>(() => 
+                snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator()));
         }
 
         [Fact]
@@ -105,6 +115,5 @@ namespace SnakesAndLadders.Tests
 
             Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
         }
-
     }
 }

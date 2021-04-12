@@ -28,7 +28,7 @@ namespace SnakesAndLadders
                 diceValidator = new EvenDiceValidator();
 
             SnakeLadderPositions snakeLadderPositions = new SnakeLadderPositions(_snakePositions);
-            SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
+            SnakesAndLaddersBoard snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
 
             Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
             while (true)
@@ -43,7 +43,7 @@ namespace SnakesAndLadders
                     Console.WriteLine("Enter Dice Outcome:");
                     diceOutcome = int.TryParse(Console.ReadLine(), out diceOutcome) ? diceOutcome : -1;
 
-                    int nextPosition = _snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
+                    int nextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
                     Console.WriteLine($"Next Position:{nextPosition}");
                 }
                 catch (InvalidInputException ex)
