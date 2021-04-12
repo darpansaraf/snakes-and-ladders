@@ -9,6 +9,9 @@ using System.Text;
 
 namespace SnakesAndLadders
 {
+    /// <summary>
+    /// Represents Snakes Ladders Board. 
+    /// </summary>
     public class SnakesAndLaddersBoard
     {
         private const int MAX_CELLS = 100;

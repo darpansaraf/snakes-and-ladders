@@ -7,6 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SnakesAndLadders
 {
+    /// <summary>
+    /// Main Class
+    /// </summary>
     [ExcludeFromCodeCoverage]
     class Program
     {
@@ -21,7 +24,7 @@ namespace SnakesAndLadders
             // Initialize Snake Positions here
             var snakeLadderPositions = new SnakeLadderPositions()
             {
-                SnakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } },
+                SnakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } }
             };
 
             SnakesAndLaddersBoard _snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SnakesAndLadders.Validators
 {
+    /// <summary>
+    /// Validates whether the current position is between 0, 99 Inclusive.
+    /// </summary>
     class PositionValidator : AbstractValidator<int>
     {
         public PositionValidator()
