@@ -27,7 +27,3 @@ To build the application and get started follow the below steps
     
     dotnet test
     
-    
-## Implementation Approach
-    This application calculates the next position of a player on a snakes and ladder board relative the to the current position and dice outcome.
-    The application uses FluentValidation to perform some validations on the input and will throw an error if the inputs are not valid.
