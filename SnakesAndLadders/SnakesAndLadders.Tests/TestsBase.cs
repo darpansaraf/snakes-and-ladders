@@ -1,5 +1,4 @@
-﻿using SnakesAndLadders.Validators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -9,13 +8,13 @@ namespace SnakesAndLadders.Tests
     [ExcludeFromCodeCoverage]
     public class TestsBase : IDisposable
     {
-        protected SnakesAndLaddersBoard snakesAndLaddersBoard;
-        private static Dictionary<int, int> _snakePositions = new Dictionary<int, int>() { { 36, 19 }, { 14, 7 } };
+        protected Board board;
+        private static List<Snake> _snakes = new List<Snake>() { new Snake(14, 7) };
+        protected IDiceStrategy diceStrategy;
 
         public TestsBase()
         {
-            var snakeLadderPositions = new SnakeLadderPositions(_snakePositions);
-            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator());
+            board = new Board(_snakes);
         }
 
         public void Dispose()
