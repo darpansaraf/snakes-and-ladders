@@ -10,7 +10,9 @@ namespace SnakesAndLadders
     [ExcludeFromCodeCoverage]
     class Program
     {
+        //Initialize Snakes and Dice Strategy here
         private static List<Snake> _snakes = new List<Snake>() { new Snake(14, 7) };
+        private static IDiceStrategy _diceStrategy = new NormalDiceStrategy();
 
         static void Main(string[] args)
         {
@@ -19,18 +21,18 @@ namespace SnakesAndLadders
 
             while (true)
             {
-                Console.WriteLine("=================================\n");
                 try
                 {
-                    Console.WriteLine("Enter Current Position:");
+                    Console.WriteLine("\nEnter Current Position:");
                     int currentPosition = int.TryParse(Console.ReadLine(), out currentPosition) ? currentPosition : -1;
 
-                    int diceOutcome;
-                    Console.WriteLine("Enter Dice Outcome:");
-                    diceOutcome = int.TryParse(Console.ReadLine(), out diceOutcome) ? diceOutcome : -1;
+                    int diceOutcome = _diceStrategy.Throw();
+                    Console.WriteLine($"Dice Outcome:{diceOutcome}");
 
                     int nextPosition = board.Play(currentPosition, diceOutcome);
                     Console.WriteLine($"Next Position:{nextPosition}");
+
+                    Console.WriteLine("=================================\n");
                 }
                 catch (Exception ex)
                 {
@@ -48,6 +50,7 @@ namespace SnakesAndLadders
                     Console.Write($"Snake Positions: [{snake.Start},{snake.End}]");
                 }
             }
+            Console.WriteLine($"\nDice Strategy:{_diceStrategy.GetType().Name}");
         }
     }
 }

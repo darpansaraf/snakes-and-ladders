@@ -10,6 +10,7 @@ namespace SnakesAndLadders.Tests
     {
         protected Board board;
         private static List<Snake> _snakes = new List<Snake>() { new Snake(14, 7) };
+        protected IDiceStrategy diceStrategy;
 
         public TestsBase()
         {
