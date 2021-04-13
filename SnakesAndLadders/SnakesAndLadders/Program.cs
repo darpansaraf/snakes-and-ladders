@@ -10,9 +10,13 @@ namespace SnakesAndLadders
     [ExcludeFromCodeCoverage]
     class Program
     {
+        private static List<Snake> _snakes = new List<Snake>() { new Snake(14, 7) };
+
         static void Main(string[] args)
         {
-            Board board = new Board();
+            Board board = new Board(_snakes);
+            PrintDetails();
+
             while (true)
             {
                 Console.WriteLine("=================================\n");
@@ -31,6 +35,17 @@ namespace SnakesAndLadders
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        private static void PrintDetails()
+        {
+            if (_snakes != null && _snakes.Count > 0)
+            {
+                foreach (var snake in _snakes)
+                {
+                    Console.Write($"Snake Positions: [{snake.Start},{snake.End}]");
                 }
             }
         }

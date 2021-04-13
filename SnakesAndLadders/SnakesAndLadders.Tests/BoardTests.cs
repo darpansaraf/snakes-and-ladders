@@ -7,7 +7,7 @@ namespace SnakesAndLadders.Tests
 {
     [ExcludeFromCodeCoverage]
 
-    public class SnakesAndLaddersTests : TestsBase
+    public class BoardTests : TestsBase
     {
         [Fact]
         public void Test_ValidCurrentPositionAndValidDiceOutcomeShouldReturnTheNextPosition()
@@ -32,6 +32,18 @@ namespace SnakesAndLadders.Tests
             int actualNextPosition = board.Play(currentPosition, diceOutcome);
 
             //Assert
+            Assert.Equal(expectedNextPosition, actualNextPosition);
+        }
+
+        
+
+        [Fact]
+        public void Test_OnSnakeBitePieceNextPositionShouldBeSnakesTail()
+        {
+            int currentPosition = 10, diceOutcome = 4, expectedNextPosition = 7;
+
+            int actualNextPosition = board.Play(currentPosition, diceOutcome);
+
             Assert.Equal(expectedNextPosition, actualNextPosition);
         }
     }
