@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using SnakesAndLadders.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,13 @@ namespace SnakesAndLadders.Validators
             RuleForEach(snakePositions => snakePositions.SnakePositions.Values)
                 .GreaterThan(1)
                 .WithMessage("Invalid Snakes' End Position");
+        }
 
+        public override ValidationResult Validate(ValidationContext<SnakeLadderPositions> context)
+        {
+            if (context.InstanceToValidate != null && context.InstanceToValidate.SnakePositions != null)
+                return base.Validate(context);
+            return new ValidationResult();
         }
 
         private bool ValidateSnakePositions(Dictionary<int, int> snakePositions)

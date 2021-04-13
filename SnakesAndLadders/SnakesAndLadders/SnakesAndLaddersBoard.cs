@@ -37,7 +37,9 @@ namespace SnakesAndLadders
             
             if (nextPosition > MAX_CELLS)
                 nextPosition = currentPosition;
-            else if (_snakeLadderPositions.SnakePositions.ContainsKey(nextPosition))
+            else if (_snakeLadderPositions!= null && 
+                     _snakeLadderPositions.SnakePositions != null &&  
+                     _snakeLadderPositions.SnakePositions.ContainsKey(nextPosition))
                 nextPosition = _snakeLadderPositions.SnakePositions[nextPosition];
 
             return nextPosition;

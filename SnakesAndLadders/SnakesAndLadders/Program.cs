@@ -30,7 +30,9 @@ namespace SnakesAndLadders
             SnakeLadderPositions snakeLadderPositions = new SnakeLadderPositions(_snakePositions);
             SnakesAndLaddersBoard snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, diceValidator);
 
-            Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
+            if (snakeLadderPositions != null && snakeLadderPositions.SnakePositions != null)
+                Console.WriteLine($"Snake Positions:{string.Join(",", snakeLadderPositions.SnakePositions)}");
+
             while (true)
             {
                 Console.WriteLine("=================================\n");

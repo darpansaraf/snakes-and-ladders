@@ -115,5 +115,29 @@ namespace SnakesAndLadders.Tests
 
             Assert.Throws<InvalidInputException>(() => snakesAndLaddersBoard.Play(currentPosition, diceOutcome));
         }
+
+        [Fact]
+        public void Test_NoSnakesConfiguredShouldAllowThePieceToMoveWithoutAnyError()
+        {
+            int currentPosition = 10, diceOutcome = 3, expectedNextPosition = 13;
+            Dictionary<int, int> snakePositions = null;
+            
+            var snakeLadderPositions = new SnakeLadderPositions(snakePositions);
+            snakesAndLaddersBoard = new SnakesAndLaddersBoard(snakeLadderPositions, new DiceValidator());
+            int actualNextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
+
+            Assert.Equal(expectedNextPosition, actualNextPosition);
+        }
+
+        [Fact]
+        public void Test_NoSnakeLadderObjectConfiguredShouldAllowThePieceToMoveWithoutAnyError()
+        {
+            int currentPosition = 10, diceOutcome = 3, expectedNextPosition = 13;
+
+            snakesAndLaddersBoard = new SnakesAndLaddersBoard(null, new DiceValidator());
+            int actualNextPosition = snakesAndLaddersBoard.Play(currentPosition, diceOutcome);
+
+            Assert.Equal(expectedNextPosition, actualNextPosition);
+        }
     }
 }
