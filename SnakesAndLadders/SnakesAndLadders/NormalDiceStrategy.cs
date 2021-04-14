@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SnakesAndLadders
 {
+    /// <summary>
+    /// Generates Dice outcome in a universal manner
+    /// </summary>
     public class NormalDiceStrategy : IDiceStrategy
     {
         private Random _random;

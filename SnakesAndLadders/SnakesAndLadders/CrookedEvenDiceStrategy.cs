@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SnakesAndLadders
 {
+    /// <summary>
+    /// Dice strategy which generates only even numbers of dice(2, 4, 6).
+    /// </summary>
     public class CrookedEvenDiceStrategy : IDiceStrategy
     {
         private Random _random;

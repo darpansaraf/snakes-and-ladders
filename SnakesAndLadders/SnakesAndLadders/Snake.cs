@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SnakesAndLadders
 {
+    /// <summary>
+    /// Defines a Snake.
+    /// </summary>
     public class Snake : IBigMove
     {
         public Snake(int start, int end)
