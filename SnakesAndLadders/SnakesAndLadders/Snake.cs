@@ -26,7 +26,7 @@ namespace SnakesAndLadders
 
         public int End { get; set; }
 
-        public int MakeBigMove()
+        public virtual int MakeBigMove()
         {
             return End;
         }

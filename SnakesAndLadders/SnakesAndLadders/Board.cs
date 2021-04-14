@@ -26,7 +26,7 @@ namespace SnakesAndLadders
             if (nextPosition > MAX_BOARD_SIZE)
                 nextPosition = currentPosition;
             
-            Snake snake = _snakes != null ? _snakes.Find(s => s.Start.Equals(nextPosition)) : null;
+            var snake = _snakes != null ? _snakes.Find(s => s.Start.Equals(nextPosition)) : null;
             if (snake != null)
                 return snake.MakeBigMove();
 
